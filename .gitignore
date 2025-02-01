@@ -1,1 +1,26 @@
-./node_modules
+# Node.js dependencies
+node_modules/
+
+# TypeScript compiled output
+/dist/
+/build/
+
+# TypeScript
+*.tsbuildinfo
+
+# VSCode settings
+.vscode/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# npm package-lock and yarn lock files (if you want to ignore them)
+# package-lock.json
+# yarn.lock
+
+# Environment variables file
+.env
