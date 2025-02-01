@@ -9,21 +9,39 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="src/app.js"></script>
     <title>Shortify</title>
   </head>
   <body>
-    <main>
-      <div>
-        <h1>Shortify - Free URL Shortener</h1>
-        <span>Your go-to URL shortener for quick and easy links!</span>
-      </div>
-
-      <form>
-        <div>
-          <input type="text" placeholder="Enter link here" />
+    <main class="main">
+      <div class="main__container container">
+        <div class="main__header">
+          <h1 class="main__title">Shortify - Free URL Shortener</h1>
+          <span class="main__span"
+            >Your go-to URL shortener for quick and easy links!</span
+          >
         </div>
-        <input type="submit" value="Shorten URL" />
-      </form>
+
+        <form class="main__form">
+          <div class="main__input-container">
+            <input
+              class="main__input"
+              type="text"
+              placeholder="Enter link here"
+            />
+          </div>
+          <input type="submit" value="Shorten URL" class="main__submit" />
+        </form>
+
+        <div class="main__description">
+          <p>
+            Shortify is a simple and intuitive URL shortener app that allows
+            users to take long URLs and generate shorter links. With the click
+            of a button copy the shortened link for easy sharing.
+          </p>
+        </div>
+      </div>
     </main>
   </body>
 </html>
