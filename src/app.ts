@@ -1,5 +1,8 @@
 const form = document.querySelector("#form") as HTMLFormElement;
 const input = document.querySelector("#input-url") as HTMLInputElement;
+const questionsHeader = document.querySelectorAll(
+  ".question__header"
+) as NodeListOf<HTMLDivElement>;
 
 const shortenURL = (originalURL: string): string => {
   const baseURL = "https://shortify.io/";
@@ -19,6 +22,16 @@ const isValidURL = (url: string): boolean => {
     return false;
   }
 };
+
+const toggleModalQuestion = (element: HTMLDivElement) => {
+  const parentElement = element.closest(".question") as HTMLDivElement;
+
+  parentElement.classList.toggle("open");
+};
+
+questionsHeader.forEach((question) => {
+  question.addEventListener("click", () => toggleModalQuestion(question));
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
