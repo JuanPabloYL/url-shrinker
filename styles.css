@@ -206,6 +206,9 @@ h1 {
   padding-top: 4rem;
   padding-bottom: 1rem;
 }
+.questions-container {
+  padding-top: 2rem;
+}
 
 .question.open .question__content {
   height: 100%;
@@ -234,4 +237,14 @@ h1 {
   pointer-events: none;
 
   transition: all 0.3s;
+}
+
+/* Footer */
+
+.footer {
+  background-color: var(--gray);
+  color: var(--light-color);
+  text-align: center;
+  padding-block: 1rem;
+  font-size: 1.2rem;
 }
