@@ -136,6 +136,30 @@ h1 {
   padding-bottom: 5rem;
 }
 
+/* URL */
+.display-url {
+  color: var(--secondary-color);
+  background-color: var(--light-color);
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .display-url {
+    flex-direction: row;
+  }
+}
+
+.display-url__copy:hover {
+  cursor: pointer;
+}
 /* Description */
 .description {
   background: linear-gradient(

@@ -31,13 +31,9 @@ const faqs = [
         question: "What happens if my shortened URL expires?",
         answer: "This tool does not currently support expiration dates for shortened URLs. Once generated, the link will remain active.",
     },
-    {
-        question: "Can I share my shortened URL on social media?",
-        answer: "Absolutely! Shortened URLs are perfect for sharing on social media platforms, emails, or anywhere else.",
-    },
 ];
 const shortenURL = (originalURL) => {
-    const baseURL = "https://shortify.io/";
+    const baseURL = "shortify/";
     const uniqueID = Math.random().toString(36).substring(2, 8);
     // Store the original URL in localStorage
     localStorage.setItem(uniqueID, originalURL);
@@ -101,12 +97,57 @@ questionsHeader.forEach((question) => {
     question.addEventListener("click", () => toggleModalQuestion(question));
 });
 document.addEventListener("DOMContentLoaded", () => appendFAQToDOM(faqs));
+const displayURL = (originalUrl, shortUrl) => {
+    const urlID = shortUrl.split("/").pop();
+    const urlHTML = `<div class="display-url">
+          <div class="display-url__url">
+            <p>${originalUrl}</p>
+          </div>
+          <div class="display-url__shrink">
+            <a href="${shortUrl}" data-id="${urlID}" class="shortened-link">${shortUrl}</a>
+          </div>
+          <div class="display-url__copy">Copy</div>
+        </div>`;
+    form.insertAdjacentHTML("afterend", urlHTML);
+    const newDisplay = form.nextElementSibling;
+    // Copy button functionality
+    const copyButton = newDisplay.querySelector(".display-url__copy");
+    if (copyButton) {
+        copyButton.addEventListener("click", () => {
+            navigator.clipboard
+                .writeText(shortUrl)
+                .then(() => {
+                copyButton.textContent = "Copied!";
+                setTimeout(() => (copyButton.textContent = "Copy"), 1500);
+            })
+                .catch((err) => console.error("Failed to copy:", err));
+        });
+    }
+    // Shortened link redirection functionality
+    const shortLink = newDisplay.querySelector(".shortened-link");
+    if (shortLink) {
+        shortLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            const urlID = shortLink.getAttribute("data-id");
+            if (urlID) {
+                const original = localStorage.getItem(urlID);
+                if (original) {
+                    window.open(original, "_blank"); // Redirect to original URL
+                }
+                else {
+                    alert("Invalid short URL");
+                }
+            }
+        });
+    }
+};
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const userURL = input.value;
     const validURL = isValidURL(userURL);
     if (validURL) {
-        console.log(shortenURL(userURL));
+        displayURL(userURL, shortenURL(userURL));
+        // console.log(shortenURL(userURL));
     }
     else {
         alert("No valid url");
